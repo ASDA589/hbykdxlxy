@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心研汇・解剖教学仪器预约平台</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Microsoft YaHei",sans-serif;
+        }
+        body{
+            background:#f7f9fc;
+            color:#222;
+        }
+        .header{
+            background:#1a5276;
+            color:white;
+            padding:1.2rem;
+            text-align:center;
+        }
+        .header h1{
+            font-size:22px;
+            font-weight:normal;
+        }
+        .nav{
+            background:#2980b9;
+            padding:0.8rem;
+            text-align:center;
+        }
+        .nav a{
+            color:white;
+            margin:0 12px;
+            text-decoration:none;
+            font-size:15px;
+        }
+        .nav a:hover{
+            text-decoration:underline;
+        }
+        .container{
+            max-width:1000px;
+            margin:2rem auto;
+            padding:0 15px;
+        }
+        .page{
+            display:none;
+        }
+        .page.active{
+            display:block;
+        }
+        .title{
+            text-align:center;
+            margin-bottom:1.5rem;
+            color:#1a5276;
+            font-size:20px;
+        }
+        .instrument-box{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+            gap:15px;
+        }
+        .card{
+            background:white;
+            border-radius:10px;
+            padding:18px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+            border-left:4px solid #2980b9;
+        }
+        .card h3{
+            font-size:16px;
+            margin-bottom:8px;
+            color:#1a5276;
+        }
+        .card p{
+            font-size:13px;
+            color:#555;
+            margin-bottom:6px;
+            line-height:1.4;
+        }
+        .state{
+            font-size:13px;
+            padding:3px 8px;
+            border-radius:4px;
+            display:inline-block;
+            margin-bottom:10px;
+        }
+        .free{
+            background:#e8f5e9;
+            color:#2e7d32;
+        }
+        .btn{
+            background:#2980b9;
+            color:white;
+            border:none;
+            padding:8px 12px;
+            border-radius:6px;
+            width:100%;
+            cursor:pointer;
+            font-size:14px;
+        }
+        .btn:hover{
+            background:#1f618d;
+        }
+        .form{
+            background:white;
+            max-width:550px;
+            margin:0 auto;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+        }
+        .form-item{
+            margin-bottom:16px;
+        }
+        .form-item label{
+            display:block;
+            font-size:14px;
+            margin-bottom:6px;
+            color:#333;
+        }
+        .form-item input,
+        .form-item select{
+            width:100%;
+            padding:10px;
+            border:1px solid #ddd;
+            border-radius:6px;
+            font-size:14px;
+        }
+        .record-list{
+            max-width:700px;
+            margin:0 auto;
+        }
+        .record-item{
+            background:white;
+            padding:15px;
+            border-radius:8px;
+            margin-bottom:10px;
+            box-shadow:0 1px 5px rgba(0,0,0,0.05);
+            font-size:14px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .del{
+            background:#e74c3c;
+            color:white;
+            border:none;
+            padding:6px 10px;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:12px;
+        }
+        .empty{
+            text-align:center;
+            color:#777;
+            padding:2rem;
+        }
+        footer{
+            text-align:center;
+            padding:2rem;
+            color:#999;
+            font-size:13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>心研汇・解剖教学仪器预约平台</h1>
+    </div>
+    <div class="nav">
+        <a onclick="go('home')">教学仪器</a>
+        <a onclick="go('book')">我要预约</a>
+        <a onclick="go('record')">我的预约</a>
+    </div>
+
+    <div class="container">
+        <!-- 仪器列表 -->
+        <div id="home" class="page active">
+            <div class="title">心脏解剖教学专用仪器</div>
+            <div class="instrument-box">
+
+                <div class="card">
+                    <h3>心脏解剖标本操作台</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：心房、心室、瓣膜、血管走行解剖观察</p>
+                    <p>适配：心的位置、外形、毗邻结构教学</p>
+                    <button class="btn" onclick="go('book','心脏解剖标本操作台')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>3D数字解剖模型工作站</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：3D交互式心脏模型，血管/传导系可视化</p>
+                    <p>适配：心的血管、传导系统空间结构理解</p>
+                    <button class="btn" onclick="go('book','3D数字解剖模型工作站')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>AR心脏解剖互动教学仪</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：虚实结合展示心脏结构，强化空间认知</p>
+                    <p>适配：课堂互动、结构快速识别</p>
+                    <button class="btn" onclick="go('book','AR心脏解剖互动教学仪')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>VR心脏解剖技能训练舱</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：沉浸式解剖、模拟临床操作</p>
+                    <p>适配：早临床、医工融合教学环节</p>
+                    <button class="btn" onclick="go('book','VR心脏解剖技能训练舱')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>心脏传导系电生理模拟仪</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：模拟心电信号传导，理解心律机制</p>
+                    <p>适配：心传导系功能教学</p>
+                    <button class="btn" onclick="go('book','心脏传导系电生理模拟仪')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>心肌组织切片显微镜</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：观察心肌、瓣膜组织学结构</p>
+                    <p>适配：宏观—微观解剖结合</p>
+                    <button class="btn" onclick="go('book','心肌组织切片显微镜')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>心音听诊与模拟仪</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：正常/异常心音听诊，瓣膜解剖关联</p>
+                    <p>适配：临床技能、瓣膜教学</p>
+                    <button class="btn" onclick="go('book','心音听诊与模拟仪')">立即预约</button>
+                </div>
+
+                <div class="card">
+                    <h3>心脏微循环成像观测仪</h3>
+                    <span class="state free">可预约</span>
+                    <p>用途：冠脉微循环观察，理解心肌供血</p>
+                    <p>适配：心梗案例、血管教学</p>
+                    <button class="btn" onclick="go('book','心脏微循环成像观测仪')">立即预约</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 预约页面 -->
+        <div id="book" class="page">
+            <div class="title">仪器预约申请</div>
+            <div class="form">
+                <div class="form-item">
+                    <label>选择仪器</label>
+                    <select id="inst">
+                        <option>心脏解剖标本操作台</option>
+                        <option>3D数字解剖模型工作站</option>
+                        <option>AR心脏解剖互动教学仪</option>
+                        <option>VR心脏解剖技能训练舱</option>
+                        <option>心脏传导系电生理模拟仪</option>
+                        <option>心肌组织切片显微镜</option>
+                        <option>心音听诊与模拟仪</option>
+                        <option>心脏微循环成像观测仪</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>使用日期</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-item">
+                    <label>使用时段</label>
+                    <select id="time">
+                        <option>上午 8:00-10:00</option>
+                        <option>上午 10:00-12:00</option>
+                        <option>下午 14:00-16:00</option>
+                        <option>下午 16:00-18:00</option>
+                        <option>晚上 19:00-21:00</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>姓名</label>
+                    <input type="text" id="name" placeholder="请输入姓名">
+                </div>
+                <div class="form-item">
+                    <label>学号</label>
+                    <input type="text" id="num" placeholder="请输入学号">
+                </div>
+                <button class="btn" onclick="submitBook()">提交预约</button>
+            </div>
+        </div>
+
+        <!-- 我的预约 -->
+        <div id="record" class="page">
+            <div class="title">我的预约记录</div>
+            <div class="record-list" id="recordList"></div>
+        </div>
+    </div>
+
+    <footer>心研汇・解剖教学仪器预约平台 — 服务系统解剖学（心脏）教学</footer>
+
+    <script>
+        let pages = document.querySelectorAll('.page');
+
+        // 【关键修复】可以接收仪器名字并自动选中
+        function go(id, instName = ''){
+            pages.forEach(p=>p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            // 如果传了仪器名，就自动选中
+            if(instName){
+                document.getElementById('inst').value = instName;
+            }
+        }
+
+        let list = JSON.parse(localStorage.getItem('heartBook')) || [];
+
+        function submitBook(){
+            let inst = document.getElementById('inst').value;
+            let date = document.getElementById('date').value;
+            let time = document.getElementById('time').value;
+            let name = document.getElementById('name').value;
+            let num = document.getElementById('num').value;
+
+            if(!inst||!date||!name||!num){
+                alert('请填写完整信息');
+                return;
+            }
+
+            let item = {
+                id:Date.now(),
+                inst,date,time,name,num
+            };
+
+            list.push(item);
+            localStorage.setItem('heartBook',JSON.stringify(list));
+            alert('预约成功！');
+            render();
+            go('record');
+        }
+
+        function render(){
+            let dom = document.getElementById('recordList');
+            let html = '';
+            if(list.length===0){
+                html = '<div class="empty">暂无预约记录</div>';
+            }else{
+                list.forEach(item=>{
+                    html+=`
+                    <div class="record-item">
+                        <div>
+                            ${item.inst}<br>
+                            ${item.date} ${item.time}<br>
+                            预约人：${item.name} ${item.num}
+                        </div>
+                        <button class="del" onclick="del(${item.id})">取消预约</button>
+                    </div>
+                    `;
+                })
+            }
+            dom.innerHTML = html;
+        }
+
+        function del(id){
+            list = list.filter(i=>i.id!=id);
+            localStorage.setItem('heartBook',JSON.stringify(list));
+            render();
+            alert('已取消');
+        }
+
+        render();
+    </script>
+</body>
+</html>
